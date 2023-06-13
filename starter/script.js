@@ -13,9 +13,9 @@ document.querySelector('.guess').value = 20;
 let randomNumber = Math.trunc(Math.random() * 20) + 1;
 //let score = sessionStorage.getItem('score') || 20;
 let score = 20;
-document.querySelector('.score').textContent = score;
+//document.querySelector('.score').textContent = score;
 
-//document.querySelector('.number').textContent = randomNumber;
+document.querySelector('.number').textContent = randomNumber;
 
 let x = function () {
   const guessing = Number(document.querySelector('.guess').value);
@@ -32,13 +32,14 @@ let x = function () {
     document.querySelector('.score').textContent = score;
   } // player too high
   else if (guessing > randomNumber) {
-    if (score < 1) {
+    if (score > 1) {
       document.querySelector('.message').textContent = 'Number too high ☝️ ';
       score--;
       document.querySelector('.score').textContent = score;
     } else {
       console.log('you lose');
       document.querySelector('.message').textContent = 'you Lose ';
+      document.querySelector('.score').textContent = 0;
     }
   } else if (guessing < randomNumber)
     if (score > 1) {
@@ -48,6 +49,7 @@ let x = function () {
     } else {
       console.log('you lose');
       document.querySelector('.message').textContent = 'you Lose ';
+      document.querySelector('.score').textContent = 0;
     }
 };
 
