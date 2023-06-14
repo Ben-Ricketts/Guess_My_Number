@@ -13,9 +13,9 @@ document.querySelector('.guess').value = 20;
 let randomNumber = Math.trunc(Math.random() * 20) + 1;
 //let score = sessionStorage.getItem('score') || 20;
 let score = 20;
-//document.querySelector('.score').textContent = score;
+document.querySelector('.score').textContent = score;
 
-document.querySelector('.number').textContent = randomNumber;
+//document.querySelector('.number').textContent = randomNumber;
 
 let x = function () {
   const guessing = Number(document.querySelector('.guess').value);
@@ -30,6 +30,7 @@ let x = function () {
     document.querySelector('.number').style.width = '30rem';
     score++;
     document.querySelector('.score').textContent = score;
+    document.querySelector('.number').textContent = randomNumber;
   } // player too high
   else if (guessing > randomNumber) {
     if (score > 1) {
@@ -40,6 +41,7 @@ let x = function () {
       console.log('you lose');
       document.querySelector('.message').textContent = 'you Lose ';
       document.querySelector('.score').textContent = 0;
+      document.querySelector('body').style.backgroundColor = 'red';
     }
   } else if (guessing < randomNumber)
     if (score > 1) {
@@ -50,16 +52,23 @@ let x = function () {
       console.log('you lose');
       document.querySelector('.message').textContent = 'you Lose ';
       document.querySelector('.score').textContent = 0;
+      document.querySelector('body').style.backgroundColor = 'red';
     }
 };
 
 let again = function () {
-  sessionStorage.setItem('score', score);
+  // sessionStorage.setItem('score', score);
   location.reload();
 };
 
 document.querySelector('.check').addEventListener('click', x);
 document.querySelector('.again').addEventListener('click', again);
+document.querySelector('.guess').addEventListener('keydown', function (event) {
+  if (event.key === 'Enter') {
+    event.preventDefault(); // Prevent form submission
+    x();
+  }
+});
 
 console.log(randomNumber);
 console.log(score);
